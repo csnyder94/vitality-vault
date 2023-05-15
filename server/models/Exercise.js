@@ -40,6 +40,6 @@ const thoughtSchema = new Schema({
   ],
 });
 
-const Thought = model('Thought', thoughtSchema);
+const Exercise = model('Exercise', thoughtSchema);
 
-module.exports = Thought;
+module.exports = Exercise;
