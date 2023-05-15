@@ -1,2 +1,48 @@
-# vitality-vault
-This application allows a user to sign-up and track their workout and fitness goals. 
+# Vitality Vault
+
+## By Aiden Miller, Madison Scercy, and Christopher Snyder
+
+
+## Link
+
+Add Link 
+
+## Description
+
+Our website allows a user to make an account and login.  As a user, you can set up your profile, and add your workout and fitness information to a secure database.  You can view this information at anytime to help keep track of your fitness journey.  It uses GraphQL and Express.js to interact with a MongoDB database. 
+
+## Table of Contents:
+* [Description](#description)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Support](#support)
+* [Credits](#credits)
+
+
+## Installation
+
+ To install necessary dependencies, run the following command:
+  ```
+  npm i
+  ```
+
+## Usage
+
+To use this application on your local machine: clone the repository, install dependencies, create a dotenv file with proper information and run the commands:
+```
+npm run develop
+```
+
+## Support
+
+If you have any issues, feel free to email one of the group members.  Our email addresses are: Aiden Miller (millerboy1676@gmail.com), Madison Scercy (madiscercy@gmail.com), and Christopher Snyder (snyder28139_04@hotmail.com). 
+
+## Credits
+
+This project was a collaboration between fellow classmates: Aiden Miller, Madison Scercy, and Christopher Snyder.  
+
+## Expected Webviews
+
+Homepage:
+
+Add Image
