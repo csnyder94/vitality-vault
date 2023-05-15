@@ -19,12 +19,40 @@ const userSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  thoughts: [
+  exercises: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'Thought',
+      ref: 'Exercise',
     },
   ],
+  age: {
+    type: Number,
+    trim: true,
+  },
+  height: {
+    type: Number,
+    trim: true
+  },
+  weight: {
+    type: Number,
+    trim: true
+  },
+  bmi: {
+    type: Number,
+    trim: true
+  },
+  neck: {
+    type: Number,
+    trim: true
+  },
+  chest: {
+    type: Number,
+    trim: true
+  },
+  waist: {
+    type: Number,
+    trim: true
+  },
 });
 
 userSchema.pre('save', async function (next) {
