@@ -25,9 +25,6 @@ query Exercises {
     description
     date
     type
-    userId {
-      _id
-    }
   }
 }
 `;
@@ -40,9 +37,6 @@ query getSingleExercise($exerciseId: ID!) {
     description
     date
     type
-    userId {
-      _id
-    }
   }
 }
 `;
