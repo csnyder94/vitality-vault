@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../../images/vv-logo.png';
 
 import Auth from '../../utils/auth';
 
@@ -9,18 +10,21 @@ const Header = () => {
 		Auth.logout();
 	};
 	return (
-		<header className='bg-orange-200 text-white mb-4 py-3 flex flex-row items-center'>
-			<div className='container mx-auto flex flex-row justify-between items-right'>
-				<div>
-					<Link className='text-4xl' to='/'>
-						<h1 className='m-0'>Vitality Vault</h1>
-					</Link>
-					<p className='m-0'>Elevate Your Health, Embrace the Power of Exercise</p>
+		<header className='bg-amber-500 text-white mb-4 py-3 flex justify-between items-center'>
+			<div className='container mx-auto flex justify-between items-center'>
+				<div className='flex items-center'>
+					<img src={logo} alt='Vitality Vault' className='h-20 w-20' />
+					<div>
+						<Link className='md:text-4xl text-xs' to='/'>
+							<h1 className='ml-2'>Vitality Vault</h1>
+						</Link>
+						<p className='m-0'>Elevate Your Health, Embrace the Power of Exercise</p>
+					</div>
 				</div>
 				<div>
 					{Auth.loggedIn() ? (
 						<>
-							<Link className='btn btn-lg bg-blue-300 m-2' to='/me'>
+							<Link className='btn btn-lg bg-amber-400 m-2' to='/me'>
 								{Auth.getProfile().data.username}'s profile
 							</Link>
 							<button className='btn btn-lg bg-white m-2' onClick={logout}>
@@ -29,10 +33,10 @@ const Header = () => {
 						</>
 					) : (
 						<>
-							<Link className='btn btn-lg bg-blue-300 m-2' to='/login'>
+							<Link className='btn btn-lg bg-amber-400 m-2' to='/login'>
 								Login
 							</Link>
-							<Link className='btn btn-lg bg-red m-2' to='/signup'>
+							<Link className='btn btn-lg bg-amber-400 m-2' to='/signup'>
 								Sign Up
 							</Link>
 						</>

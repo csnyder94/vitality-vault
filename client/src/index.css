@@ -156,7 +156,7 @@ input,
 optgroup,
 select,
 textarea {
-	font-family: inherit;
+	font-family: 'Hind Siliguri', sans-serif;
 	/* 1 */
 	font-size: 100%;
 	/* 1 */
@@ -371,7 +371,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-family: 'JetBrains Mono', monospace;
+	font-family: 'Hind Siliguri', sans-serif;
 	margin: 0 0 0.5rem;
 	line-height: 1.25;
 }

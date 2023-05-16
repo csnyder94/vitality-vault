@@ -1,35 +1,21 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import githubLogo from '../../images/github-logo.png';
 
 const Footer = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  return (
-    <footer className="w-100 mt-auto bg-secondary p-4">
-      <div className="container text-center mb-5">
-        {location.pathname !== '/' && (
-          <button
-            className="btn btn-dark mb-3"
-            onClick={() => navigate(-1)}
-          >
-            &larr; Go Back
-          </button>
-        )}
-        <h4>
-          Made with{' '}
-          <span
-            className="emoji"
-            role="img"
-            aria-label="heart"
-            aria-hidden="false"
-          >
-            ❤️
-          </span>{' '}
-          by the Vitality Vault team.
-        </h4>
-      </div>
-    </footer>
-  );
+	const location = useLocation();
+	const navigate = useNavigate();
+	return (
+		<footer className='fixed inset-x-0 bottom-0 mt-auto bg-amber-500 p-4'>
+			<div className='container mx-auto text-center justify-center'>
+				<div className='flex items-center justify-center'>
+					<a href='https://github.com/madiscercy' target='_blank' rel='noopener noreferrer'>
+						<img src={githubLogo} alt='Github Logo' className='h-10 w-10' />
+					</a>
+				</div>
+			</div>
+		</footer>
+	);
 };
 
 export default Footer;
