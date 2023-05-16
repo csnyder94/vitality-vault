@@ -25,32 +25,31 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_THOUGHT = gql`
-  mutation addThought($thoughtText: String!) {
-    addThought(thoughtText: $thoughtText) {
+mutation AddExercise($name: String!, $description: String!, $type: String!) {
+  addExercise(name: $name, description: $description, type: $type) {
+    _id
+    date
+    description
+    name
+    type
+    userId {
       _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-      comments {
-        _id
-        commentText
-      }
     }
   }
+}
 `;
 
 export const ADD_COMMENT = gql`
-  mutation addComment($thoughtId: ID!, $commentText: String!) {
-    addComment(thoughtId: $thoughtId, commentText: $commentText) {
+mutation RemoveExercise($exerciseId: ID!) {
+  removeExercise(exerciseId: $exerciseId) {
+    _id
+    name
+    description
+    date
+    type
+    userId {
       _id
-      thoughtText
-      thoughtAuthor
-      createdAt
-      comments {
-        _id
-        commentText
-        createdAt
-      }
     }
   }
+}
 `;
