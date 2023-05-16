@@ -25,16 +25,11 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_EXERCISE = gql`
-mutation AddExercise($name: String!, $description: String!, $type: String!) {
+mutation Mutation($name: String!, $description: String!, $type: String!) {
   addExercise(name: $name, description: $description, type: $type) {
-    _id
-    date
-    description
     name
+    description
     type
-    userId {
-      _id
-    }
   }
 }
 `;
@@ -47,9 +42,6 @@ mutation RemoveExercise($exerciseId: ID!) {
     description
     date
     type
-    userId {
-      _id
-    }
   }
 }
 `;

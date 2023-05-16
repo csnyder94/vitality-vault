@@ -15,7 +15,6 @@ const typeDefs = gql`
     description: String
     date: String
     type: String!
-    userId: User
   }
 
   type Auth {

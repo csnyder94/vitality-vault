@@ -8,9 +8,9 @@ import { QUERY_EXERCISES, QUERY_ME } from '../../utils/queries';
 import Auth from '../../utils/auth';
 
 const ExerciseForm = () => {
-  const [exerciseName, setExerciseName] = useState('');
-  const [exerciseDescription, setExerciseDescription] = useState('');
-  const [exerciseType, setExerciseType] = useState('');
+  const [name, setExerciseName] = useState('');
+  const [description, setExerciseDescription] = useState('');
+  const [type, setExerciseType] = useState('');
 
   const [addExercise, { error }] = useMutation(ADD_EXERCISE, {
     update(cache, { data: { addExercise } }) {
@@ -26,11 +26,11 @@ const ExerciseForm = () => {
       }
 
       // update me object's cache
-      const { me } = cache.readQuery({ query: QUERY_ME });
-      cache.writeQuery({
-        query: QUERY_ME,
-        data: { me: { ...me, exercises: [...me.exercises, addExercise] } },
-      });
+      // const { me } = cache.readQuery({ query: QUERY_ME });
+      // cache.writeQuery({
+      //   query: QUERY_ME,
+      //   data: { me: { ...me, exercises: [...me.exercises, addExercise] } },
+      // });
     },
   });
 
@@ -40,10 +40,9 @@ const ExerciseForm = () => {
     try {
       await addExercise({
         variables: {
-          exerciseName,
-          exerciseDescription,
-          exerciseType,
-          userId: Auth.getProfile().data.id,
+          name,
+          description,
+          type,
         },
       });
 
@@ -87,7 +86,7 @@ const ExerciseForm = () => {
               <input 
               name='exerciseName'
               placeholder='Exercise Name'
-              value={exerciseName}
+              value={name}
               className='form-input w-100'
               style={{ lineHeight: '1.5', resize: 'vertical' }}
               onChange={handleChange}
@@ -95,7 +94,7 @@ const ExerciseForm = () => {
               <textarea
                 name="exerciseDescription"
                 placeholder="Here's today's exercise:"
-                value={exerciseDescription}
+                value={description}
                 className="form-input w-100"
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
@@ -103,7 +102,7 @@ const ExerciseForm = () => {
                <input 
               name='exerciseType'
               placeholder='Exercise Type'
-              value={exerciseType}
+              value={type}
               className='form-input w-100'
               style={{ lineHeight: '1.5', resize: 'vertical' }}
               onChange={handleChange}
