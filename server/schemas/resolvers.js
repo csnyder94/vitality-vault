@@ -4,15 +4,13 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
-    // user, profile, exercise, exercises, me
+    
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate('exercises')
     },
-    exercises: async () => { 
+    exercises: async () => {
       return Exercise.find({});
-    // exercises: async (parent, { username }) => {
-    //   const params = username ? { username } : {};
-    //   return Exercise.find(params).sort({ createdAt: -1 });
+      
     },
     exercise: async (parent, { exerciseId }) => {
       return Exercise.findOne({ _id: exerciseId });
@@ -50,22 +48,17 @@ const resolvers = {
       return { token, user };
     },
     addExercise: async (parent, { name, description, type }, context) => {
-      // if (context.user) {
-        const exercise = await Exercise.create({
-          name,
-          description,
-          type,
-          
-        });
+   
+      const exercise = await Exercise.create({
+        name,
+        description,
+        type,
 
-        // await User.findOneAndUpdate(
-        //   { _id: context.user._id },
-        //   { $addToSet: { exercise: exercise._id } }
-        // );
+      });
 
-        return exercise;
-      // }
-      // throw new AuthenticationError('You need to be logged in!');
+ 
+      return exercise;
+      
     },
     removeExercise: async (parent, { exerciseId }, context) => {
       if (context.user) {
@@ -82,24 +75,17 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    updateUser: async (parent, { userData }, context) => {
+      if (context.user) {
+        return User.findByIdAndUpdate({ _id: context.user._id }, { $set: userData }, {
+          new: true,
+        });
+      }
 
+      throw new AuthenticationError('Not logged in');
+    },
   },
-  // updateUser: async (parent, args, context) => {
-  //   if (context.user) {
-  //     return User.findByIdAndUpdate(context.user.id, args, {
-  //       new: true,
-  //     });
-  //   }
 
-  //   throw new AuthenticationError('Not logged in');
-  // },
-  // updateExercise: async (parent, { id }) => {
-
-  //   return Exercise.findByIdAndUpdate(
-  //     id,
-  //     { new: true }
-  //   );
-  // },
 };
 
 module.exports = resolvers;

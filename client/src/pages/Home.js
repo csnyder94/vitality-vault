@@ -8,8 +8,8 @@ import { QUERY_EXERCISES } from '../utils/queries';
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_EXERCISES);
-  // const exercise = data?.exercise || [];
-console.log(data)
+
+  console.log(data)
   return (
     <main>
       <div className="flex-row justify-center">
@@ -24,10 +24,10 @@ console.log(data)
             <div>Loading...</div>
           ) : (
             <ExerciseList
-              exercises= {data.exercises}
+              exercises={data.exercises}
             />
           )
-        }
+          }
         </div>
       </div>
     </main>
