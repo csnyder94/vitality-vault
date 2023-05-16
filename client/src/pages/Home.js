@@ -1,14 +1,14 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
 
-// import ThoughtList from '../components/ThoughtList';
+import ExerciseList from '../components/ExerciseList';
 import ExerciseForm from '../components/ExerciseForm';
 
 import { QUERY_EXERCISES } from '../utils/queries';
 
 const Home = () => {
-  // const { loading, data } = useQuery(QUERY_EXERCISES);
-  // const exercise = data?.exercise || [];
+  const { loading, data } = useQuery(QUERY_EXERCISES);
+  const exercise = data?.exercise || [];
 
   return (
     <main>
@@ -20,15 +20,14 @@ const Home = () => {
           <ExerciseForm />
         </div>
         <div className="col-12 col-md-8 mb-3">
-          {/* {loading ? (
+          {loading ? (
             <div>Loading...</div>
           ) : (
-            <ThoughtList
-              thoughts={thoughts}
-              title="Some Feed for Thought(s)..."
+            <ExerciseList
+              exercises= {exercise}
             />
           )
-        } */}
+        }
         </div>
       </div>
     </main>

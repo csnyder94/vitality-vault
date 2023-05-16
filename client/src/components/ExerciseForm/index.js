@@ -8,7 +8,9 @@ import { QUERY_EXERCISES, QUERY_ME } from '../../utils/queries';
 import Auth from '../../utils/auth';
 
 const ExerciseForm = () => {
+  const [exerciseName, setExerciseName] = useState('');
   const [exerciseDescription, setExerciseDescription] = useState('');
+  const [exerciseType, setExerciseType] = useState('');
 
   const [addExercise, { error }] = useMutation(ADD_EXERCISE, {
     update(cache, { data: { addExercise } }) {
@@ -36,14 +38,18 @@ const ExerciseForm = () => {
     event.preventDefault();
 
     try {
-      const { data } = await addExercise({
+      await addExercise({
         variables: {
+          exerciseName,
           exerciseDescription,
-          userId: Auth.getProfile().data.username,
+          exerciseType,
+          userId: Auth.getProfile().data.id,
         },
       });
 
+      setExerciseName('');
       setExerciseDescription('');
+      setExerciseType('');
     } catch (err) {
       console.error(err);
     }
@@ -52,8 +58,16 @@ const ExerciseForm = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
 
+    if (name === 'exerciseName') {
+      setExerciseName(value);
+    
+    }
     if (name === 'exerciseDescription') {
       setExerciseDescription(value);
+    
+    }
+    if (name === 'exerciseType') {
+      setExerciseType(value);
     
     }
   };
@@ -70,6 +84,14 @@ const ExerciseForm = () => {
             onSubmit={handleFormSubmit}
           >
             <div className="col-12 col-lg-9">
+              <input 
+              name='exerciseName'
+              placeholder='Exercise Name'
+              value={exerciseName}
+              className='form-input w-100'
+              style={{ lineHeight: '1.5', resize: 'vertical' }}
+              onChange={handleChange}
+              ></input>
               <textarea
                 name="exerciseDescription"
                 placeholder="Here's today's exercise:"
@@ -78,6 +100,14 @@ const ExerciseForm = () => {
                 style={{ lineHeight: '1.5', resize: 'vertical' }}
                 onChange={handleChange}
               ></textarea>
+               <input 
+              name='exerciseType'
+              placeholder='Exercise Type'
+              value={exerciseType}
+              className='form-input w-100'
+              style={{ lineHeight: '1.5', resize: 'vertical' }}
+              onChange={handleChange}
+              ></input>
             </div>
 
             <div className="col-12 col-lg-3">
