@@ -32,7 +32,7 @@ query Exercises {
 }
 `;
 
-export const QUERY_SINGLE_THOUGHT = gql`
+export const QUERY_SINGLE_EXERCISE = gql`
 query getSingleExercise($exerciseId: ID!) {
   exercise(exerciseId: $exerciseId) {
     _id

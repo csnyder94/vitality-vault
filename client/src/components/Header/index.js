@@ -15,7 +15,7 @@ const Header = () => {
 					<Link className='text-4xl' to='/'>
 						<h1 className='m-0'>Vitality Vault</h1>
 					</Link>
-					<p className='m-0'>Get into the mind of a programmer.</p>
+					<p className='m-0'>Elevate Your Health, Embrace the Power of Exercise</p>
 				</div>
 				<div>
 					{Auth.loggedIn() ? (
