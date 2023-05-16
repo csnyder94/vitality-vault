@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import Auth from '../../utils/auth';
 
 const ExerciseList = ({
   exercises
@@ -10,6 +10,9 @@ const ExerciseList = ({
   }
 
   return (
+    <div>
+    {Auth.loggedIn() ? (
+      <>
     <div>
       {exercises &&
         exercises.map((exercise) => (
@@ -24,7 +27,13 @@ const ExerciseList = ({
           </div>
         ))}
     </div>
+    </>
+    ) : (
+      <p></p>
+    )}
+    </div>
   );
+  
 };
 
 export default ExerciseList;
