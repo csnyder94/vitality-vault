@@ -22,10 +22,6 @@ const excerciseSchema = new Schema({
     required: true,
     trim: true
   },
-  userId: {
-    type: Schema.Types.ObjectId,
-    ref: 'User',
-  }
 });
 
 const Exercise = model('Exercise', excerciseSchema);

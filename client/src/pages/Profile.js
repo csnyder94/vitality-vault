@@ -3,7 +3,7 @@ import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
 import ExerciseForm from '../components/ExerciseForm';
-// import ThoughtList from '../components/ThoughtList';
+import ExerciseList from '../components/ExerciseList';
 
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 
@@ -43,12 +43,9 @@ const Profile = () => {
         </h2>
 
         <div className="col-12 col-md-10 mb-5">
-          {/* <ThoughtList
-            thoughts={user.thoughts}
-            title={`${user.username}'s thoughts...`}
-            showTitle={false}
-            showUsername={false}
-          /> */}
+          <ExerciseList
+            exercises={user.exercises}
+          />
         </div>
         {!userParam && (
           <div

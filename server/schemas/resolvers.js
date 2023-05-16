@@ -50,22 +50,22 @@ const resolvers = {
       return { token, user };
     },
     addExercise: async (parent, { name, description, type }, context) => {
-      if (context.user) {
+      // if (context.user) {
         const exercise = await Exercise.create({
           name,
           description,
           type,
-          userId: context.user._id
+          
         });
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { exercise: exercise._id } }
-        );
+        // await User.findOneAndUpdate(
+        //   { _id: context.user._id },
+        //   { $addToSet: { exercise: exercise._id } }
+        // );
 
         return exercise;
-      }
-      throw new AuthenticationError('You need to be logged in!');
+      // }
+      // throw new AuthenticationError('You need to be logged in!');
     },
     removeExercise: async (parent, { exerciseId }, context) => {
       if (context.user) {
