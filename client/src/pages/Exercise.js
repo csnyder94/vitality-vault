@@ -1,11 +1,8 @@
 import React from 'react';
 
-// Import the `useParams()` hook
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-// import CommentList from '../components/CommentList';
-// import CommentForm from '../components/CommentForm';
 
 import { QUERY_SINGLE_EXERCISE } from '../utils/queries';
 
@@ -46,12 +43,6 @@ const SingleExercise = () => {
         </blockquote>
       </div>
 
-      {/* <div className="my-5">
-        <CommentList comments={thought.comments} />
-      </div>
-      <div className="m-3 p-4" style={{ border: '1px dotted #1a1a1a' }}>
-        <CommentForm thoughtId={thought._id} />
-      </div> */}
     </div>
   );
 };

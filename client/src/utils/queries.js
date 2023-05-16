@@ -55,6 +55,13 @@ export const QUERY_ME = gql`
         date
         type
       }
+      age
+      height
+      weight
+      bmi
+      neck
+      chest
+      waist
     }
   }
 `;

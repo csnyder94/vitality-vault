@@ -7,6 +7,13 @@ const typeDefs = gql`
     email: String
     password: String
     exercises: [Exercise]!
+    age: Int
+    height: Int
+    weight: Int
+    bmi: Int
+    neck: Int
+    chest: Int
+    waist: Int
   }
 
   type Exercise {
@@ -22,6 +29,16 @@ const typeDefs = gql`
     user: User
   }
 
+input userData {
+     age: Int
+     height: Int
+     weight: Int
+     bmi: Int
+     neck: Int
+     chest: Int
+     waist: Int
+}
+
   type Query {
     user(username: String!): User
     exercises: [Exercise]
@@ -34,25 +51,8 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addExercise(name: String!, description: String!, type: String!): Exercise
     removeExercise( exerciseId: ID!): Exercise
-
-    
+    updateUser(userData: userData!): User    
   }
 `;
-//     updateUser(
-//   firstName: String
-//   lastName: String
-//   email: String
-//   password: String
-//   age: Int
-//   height: Int
-//   weight: Int
-//   bmi: Int
-//   neck: Int
-//   chest: Int
-//   waist: Int
-// ): User
-
-//  updateExercise(_id: ID!): Exercise
-
 
 module.exports = typeDefs;

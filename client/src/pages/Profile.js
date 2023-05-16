@@ -2,8 +2,7 @@ import React from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-import ExerciseForm from '../components/ExerciseForm';
-import ExerciseList from '../components/ExerciseList';
+import UserDataForm from '../components/UserDataForm';
 
 import { QUERY_USER, QUERY_ME } from '../utils/queries';
 
@@ -17,7 +16,7 @@ const Profile = () => {
   });
 
   const user = data?.me || data?.user || {};
-  // navigate to personal profile page if username is yours
+
   if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
     return <Navigate to="/me" />;
   }
@@ -43,16 +42,14 @@ const Profile = () => {
         </h2>
 
         <div className="col-12 col-md-10 mb-5">
-          <ExerciseList
-            exercises={user.exercises}
-          />
+          <UserDataForm age={user.age} height={user.height} weight={user.weight} bmi={user.bmi} neck={user.neck} chest={user.chest} waist={user.waist} />
         </div>
         {!userParam && (
           <div
             className="col-12 col-md-10 mb-3 p-3"
-            style={{ border: '1px dotted #1a1a1a' }}
+            
           >
-            <ExerciseForm />
+
           </div>
         )}
       </div>
