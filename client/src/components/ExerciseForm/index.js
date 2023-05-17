@@ -65,46 +65,50 @@ const ExerciseForm = () => {
 		<div>
 			{Auth.loggedIn() ? (
 				<>
-					<h3>What exercise will you complete today?</h3>
-					<form className='flex-row justify-center justify-space-between-md align-center' onSubmit={handleFormSubmit}>
-						<div className='col-12 col-lg-9'>
+					<h3 className='text-lg font-semibold'>What exercise will you complete today?</h3>
+					<form className='flex flex-col lg:flex-row justify-between items-center' onSubmit={handleFormSubmit}>
+						<div className='w-full lg:w-3/4'>
 							<input
 								name='exerciseName'
 								placeholder='Exercise Name'
 								value={name}
-								className='form-input w-100'
-								style={{ lineHeight: '1.5', resize: 'vertical' }}
+								className='w-full px-3 py-2 mb-3 border border-gray-300 rounded-md'
 								onChange={handleChange}
-							></input>
+							/>
 							<textarea
 								name='exerciseDescription'
 								placeholder="Here's today's exercise:"
 								value={description}
-								className='form-input w-100'
-								style={{ lineHeight: '1.5', resize: 'vertical' }}
+								className='w-full px-3 py-2 mb-3 border border-gray-300 rounded-md'
 								onChange={handleChange}
-							></textarea>
+							/>
 							<input
 								name='exerciseType'
 								placeholder='Exercise Type'
 								value={type}
-								className='form-input w-100'
-								style={{ lineHeight: '1.5', resize: 'vertical' }}
+								className='w-full px-3 py-2 mb-3 border border-gray-300 rounded-md'
 								onChange={handleChange}
-							></input>
+							/>
 						</div>
 
-						<div className='col-12 col-lg-3'>
-							<button className='btn btn-primary btn-block py-3' type='submit'>
+						<div className='w-full lg:w-1/4'>
+							<button className='w-full py-2 text-white bg-amber-500 hover:bg-amber-600 rounded-md ml-2' type='submit'>
 								Add Exercise
 							</button>
 						</div>
-						{error && <div className='col-12 my-3 bg-danger text-white p-3'>{error.message}</div>}
+						{error && <div className='w-full my-3 p-3 bg-red-500 text-white'>{error.message}</div>}
 					</form>
 				</>
 			) : (
 				<p>
-					You need to be logged in to track your workouts. Please <Link to='/login'>login</Link> or <Link to='/signup'>signup.</Link>
+					You need to be logged in to track your workouts. Please{' '}
+					<Link to='/login' className='text-amber-500'>
+						login
+					</Link>{' '}
+					or{' '}
+					<Link to='/signup' className='text-amber-500'>
+						signup.
+					</Link>
 				</p>
 			)}
 		</div>
