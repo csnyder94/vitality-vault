@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { UPDATE_USER } from '../../utils/mutations';
 
+
+import Auth from '../../utils/auth'
+
+
 const UserDataForm = (props) => {
     const [age, setAge] = useState(props?.age || 0);
     const [height, setHeight] = useState(props?.height || 0);
@@ -12,6 +16,7 @@ const UserDataForm = (props) => {
     const [waist, setWaist] = useState(props?.waist || 0);
 
     const [updateUser, { error, data }] = useMutation(UPDATE_USER);
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -39,6 +44,7 @@ const UserDataForm = (props) => {
         } catch (error) {
         }
     }
+
 
     const handleInputChange = (e) => {
         const { target } = e;
@@ -97,8 +103,9 @@ const UserDataForm = (props) => {
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-bmi">
                         BMI
-                    </label>
+
                     <input className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+
                         value={BMI}
                         name="BMI"
                         onChange={handleInputChange}>
@@ -108,7 +115,10 @@ const UserDataForm = (props) => {
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-neck">
                         Neck
                     </label>
+
                     <input className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+
+                 
                         value={neck}
                         name="neck"
                         onChange={handleInputChange}>
