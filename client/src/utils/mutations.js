@@ -43,7 +43,11 @@ mutation RemoveExercise($exerciseId: ID!) {
     date
     type
   }
-}`
+
+}`;
+
+
+
 
 export const UPDATE_USER = gql`mutation Mutation($userData: userData!) {
   updateUser(userData: $userData) {
@@ -60,3 +64,4 @@ export const UPDATE_USER = gql`mutation Mutation($userData: userData!) {
     waist
   }
 }`;
+

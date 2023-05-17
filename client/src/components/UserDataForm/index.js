@@ -1,48 +1,55 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { UPDATE_USER } from '../../utils/mutations';
+
+
 import Auth from '../../utils/auth'
 
+
 const UserDataForm = (props) => {
+    const [age, setAge] = useState(props?.age || 0);
+    const [height, setHeight] = useState(props?.height || 0);
+    const [weight, setWeight] = useState(props?.weight || 0);
+    const [BMI, setBMI] = useState(props?.bmi || 0);
+    const [neck, setNeck] = useState(props?.neck || 0);
+    const [chest, setChest] = useState(props?.chest || 0);
+    const [waist, setWaist] = useState(props?.waist || 0);
 
-    const [age, setAge] = useState(props.age);
-    const [height, setHeight] = useState(props.height);
-    const [weight, setWeight] = useState(props.weight);
-    const [BMI, setBMI] = useState(props.bmi);
-    const [neck, setNeck] = useState(props.neck);
-    const [chest, setChest] = useState(props.chest);
-    const [waist, setWaist] = useState(props.waist);
+    const [updateUser, { error, data }] = useMutation(UPDATE_USER);
 
-    const [updateUser, { userData, error }] = useMutation(UPDATE_USER)
+
     const handleSubmit = async (e) => {
+        e.preventDefault();
         try {
-            e.preventDefault()
-            const { userData } = await updateUser({
+            const userData = {
+                age: Number(age),
+                height: Number(height),
+                weight: Number(weight),
+                bmi: Number(BMI),
+                neck: Number(neck),
+                chest: Number(chest),
+                waist: Number(waist)
+            };
+
+            const info = {
+                userData: userData
+            }
+            console.log(userData);
+            const { data } = await updateUser({
                 variables: {
-                    age: age,
-                    height: height,
-                    weight: weight,
-                    bmi: BMI,
-                    neck: neck,
-                    chest: chest,
-                    waist: waist
+                    ...info
                 }
             });
-            // Auth.login(data.login.token)
-            console.log(userData)
+
         } catch (error) {
-
         }
-
     }
 
 
     const handleInputChange = (e) => {
-
         const { target } = e;
         const inputType = target.name;
         const inputValue = target.value;
-
 
         if (inputType === 'age') {
             setAge(inputValue);
@@ -60,7 +67,6 @@ const UserDataForm = (props) => {
             setWaist(inputValue);
         }
     };
-
     return (
         <form className="w-full max-w-lg" onSubmit={handleSubmit}>
             <div className="flex flex-wrap -mx-3 mb-6">
@@ -97,8 +103,9 @@ const UserDataForm = (props) => {
                 <div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-bmi">
                         BMI
-                    </label>
-                    <input className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+
+                    <input className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+
                         value={BMI}
                         name="BMI"
                         onChange={handleInputChange}>
@@ -108,7 +115,10 @@ const UserDataForm = (props) => {
                     <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-neck">
                         Neck
                     </label>
-                    <input className="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+
+                    <input className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+
+                 
                         value={neck}
                         name="neck"
                         onChange={handleInputChange}>
