@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
-import { ADD_EXERCISE } from '../../utils/mutations';
+import { ADD_EXERCISE, REMOVE_EXERCISE } from '../../utils/mutations';
 import { QUERY_EXERCISES, QUERY_ME } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
@@ -26,6 +26,22 @@ const ExerciseForm = () => {
 			}
 		},
 	});
+
+	const [removeExercise, { error: deleteError }] = useMutation(REMOVE_EXERCISE, {
+		update(cache, { data: { removeExercise } }) {
+		  try {
+			const { exercises } = cache.readQuery({ query: QUERY_EXERCISES });
+	
+			cache.writeQuery({
+			  query: QUERY_EXERCISES,
+			  data: { exercises: exercises.filter((exercise) => exercise._id !== removeExercise._id) },
+			});
+		  } catch (e) {
+			console.error(e);
+		  }
+		},
+	  });
+	
 
 	const handleFormSubmit = async (event) => {
 		event.preventDefault();
@@ -60,6 +76,16 @@ const ExerciseForm = () => {
 			setExerciseType(value);
 		}
 	};
+
+	const handleDeleteExercise = async (exerciseId) => {
+		try {
+		  await removeExercise({
+			variables: { exerciseId },
+		  });
+		} catch (err) {
+		  console.error(err);
+		}
+	  };
 
 	return (
 		<div>
@@ -97,6 +123,7 @@ const ExerciseForm = () => {
 							</button>
 						</div>
 						{error && <div className='w-full my-3 p-3 bg-red-500 text-white'>{error.message}</div>}
+						{deleteError && <div className='w-full my-3 p-3 bg-red-500 text-white'>{deleteError.message}</div>}
 					</form>
 				</>
 			) : (
