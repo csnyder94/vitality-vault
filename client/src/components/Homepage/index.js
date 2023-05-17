@@ -7,17 +7,17 @@ import Auth from '../../utils/auth';
 
 const Homepage = () => {
 	return (
-		<div className='flex flex-row justify-between items-center h-screen p-10'>
-			<div className='w-1/2 space-y-5'>
-				<h1 className='text-4xl font-bold'>Welcome to Our Workout Website</h1>
-				<p className='text-xl'>
+		<div className='md:flex md:flex-row flex-col md:justify-between items-center p-10'>
+			<div className='md:w-1/2 w-full space-y-5 justify-center md:text-left text-center'>
+				<h1 className='md:text-4xl text-xl font-bold'>Welcome to Our Workout Website</h1>
+				<p className='md:text-xl text:md'>
 					Here you can explore a variety of exercises, create your own workout routines, and track your progress. Ready to get started?
 				</p>
-				<Link to='/exercises' className='bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 mt-9 rounded'>
-					Explore Exercises
+				<Link to='/Login' className='bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 mt-9 rounded justify-center'>
+					Login to Explore Exercises
 				</Link>
 			</div>
-			<div className='w-1/2'>
+			<div className='md:w-1/2 w-full mt-10 md:mt-0'>
 				<img src={hero} alt='Workout' className='h-full w-full object-cover' />
 			</div>
 		</div>

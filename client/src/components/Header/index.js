@@ -15,7 +15,7 @@ const Header = () => {
 				<div className='flex items-center'>
 					<img src={logo} alt='Vitality Vault' className='h-20 w-20' />
 					<div>
-						<Link className='md:text-4xl text-xs' to='/'>
+						<Link className='md:text-4xl text-md' to='/'>
 							<h1 className='ml-2'>Vitality Vault</h1>
 						</Link>
 						<p className='m-0'>Elevate Your Health, Embrace the Power of Exercise</p>
