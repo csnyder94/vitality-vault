@@ -5,7 +5,7 @@
 
 ## Link
 
-Add Link 
+https://vitality-vault.herokuapp.com/
 
 ## Description
 
@@ -45,4 +45,4 @@ This project was a collaboration between fellow classmates: Aiden Miller, Madiso
 
 Homepage:
 
-Add Image
+![image](https://github.com/AidenMiller123/Book-Search-Engine/assets/123018143/53c98ffa-2b78-4b12-9807-b81562537a06) 
