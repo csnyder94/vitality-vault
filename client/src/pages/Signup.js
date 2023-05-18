@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import heroMan from '../images/hero-man.png';
 
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
@@ -39,7 +40,7 @@ const Signup = () => {
 	};
 
 	return (
-		<main className='flex justify-center mb-4'>
+		<main className='flex flex-col items-center mb-4'>
 			<div className='w-full lg:w-10/12'>
 				<div className='bg-white shadow-lg rounded-lg'>
 					<h4 className='bg-amber-500 text-white text-center p-2 rounded-t-lg'>Sign Up</h4>
@@ -87,6 +88,7 @@ const Signup = () => {
 					</div>
 				</div>
 			</div>
+			<img src={heroMan} alt='Workout man' className='h-50 w-50 justify-center' />
 		</main>
 	);
 };
