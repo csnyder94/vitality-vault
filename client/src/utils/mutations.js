@@ -25,20 +25,20 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_EXERCISE = gql`
-mutation AddExercise($type: String!, $weight: Int!, $reps: Int!, $note: String!) {
+mutation addExercise($type: String!, $weight: Int!, $reps: Int!, $note: String!) {
   addExercise(type: $type, weight: $weight, reps: $reps, note: $note) {
-    _id
-    type
     weight
+    type
     reps
     note
     date
+    _id
   }
 }
 `;
 
 export const REMOVE_EXERCISE = gql`
-mutation AddExercise($exerciseId: ID!) {
+mutation removeExercise($exerciseId: ID!) {
   removeExercise(exerciseId: $exerciseId) {
     type
     weight
@@ -49,7 +49,7 @@ mutation AddExercise($exerciseId: ID!) {
 }
 `;
 
-export const UPDATE_USER = gql`mutation Mutation($userData: userData!) {
+export const UPDATE_USER = gql`mutation updateUser($userData: userData!) {
   updateUser(userData: $userData) {
     _id
     username

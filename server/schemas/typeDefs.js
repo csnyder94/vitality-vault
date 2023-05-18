@@ -23,7 +23,6 @@ const typeDefs = gql`
     reps: Int!
     note: String
     date: String
-    
   }
 
   type Auth {
