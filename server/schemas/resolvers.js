@@ -8,9 +8,11 @@ const resolvers = {
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate('exercises')
     },
-    exercises: async () => {
-      return Exercise.find({});
-      
+    exercises: async (parent, args, context) => {
+      if (context.user) {
+        return Exercise.find({ user: context.user._id });
+      }
+      throw new AuthenticationError('You need to be logged in!');
     },
     exercise: async (parent, { exerciseId }) => {
       return Exercise.findOne({ _id: exerciseId });
@@ -48,34 +50,40 @@ const resolvers = {
       return { token, user };
     },
     addExercise: async (parent, { type, weight, reps, note }, context) => {
-   
-      const exercise = await Exercise.create({
-        type,
-        weight, 
-        reps,
-        note
+  if (context.user) {
+    const exercise = await Exercise.create({
+      type,
+      weight,
+      reps,
+      note,
+      user: context.user._id,
+    });
 
-      });
+    await User.findByIdAndUpdate(context.user._id, {
+      $push: { exercises: exercise._id },
+    });
 
- 
-      return exercise;
-      
-    },
+    return exercise;
+  }
+
+  throw new AuthenticationError('You need to be logged in!');
+},
     removeExercise: async (parent, { exerciseId }, context) => {
-      if (context.user) {
-        const exercise = await Exercise.findOneAndDelete({
-          _id: exerciseId
-        });
+  if (context.user) {
+    const exercise = await Exercise.findOneAndDelete({
+      _id: exerciseId,
+      user: context.user._id,
+    });
 
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { exercise: exercise._id } }
-        );
+    await User.findByIdAndUpdate(context.user._id, {
+      $pull: { exercises: exercise._id },
+    });
 
-        return exercise;
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
+    return exercise;
+  }
+
+  throw new AuthenticationError('You need to be logged in!');
+},
     updateUser: async (parent, { userData }, context) => {
       if (context.user) {
         return User.findByIdAndUpdate({ _id: context.user._id }, { $set: userData }, {
