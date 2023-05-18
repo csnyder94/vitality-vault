@@ -16,7 +16,7 @@ const Header = () => {
 					<img src={logo} alt='Vitality Vault' className='h-20 w-20' />
 					<div>
 						<Link className='md:text-4xl text-md' to='/'>
-							<h1 className='ml-2'>Vitality Vault</h1>
+							<h1 className='ml-2 hover:underline'>Vitality Vault</h1>
 						</Link>
 						<p className='m-0'>Elevate Your Health, Embrace the Power of Exercise</p>
 					</div>
@@ -24,19 +24,19 @@ const Header = () => {
 				<div>
 					{Auth.loggedIn() ? (
 						<>
-							<Link className='btn btn-lg bg-amber-400 m-2' to='/me'>
+							<Link className='btn btn-lg bg-amber-400 m-2 hover:underline' to='/me'>
 								{Auth.getProfile().data.username}'s profile
 							</Link>
-							<Link className='btn btn-lg bg-amber-400 m-2' onClick={logout}>
+							<Link className='btn btn-lg bg-amber-400 m-2 hover:underline' onClick={logout}>
 								Logout
 							</Link>
 						</>
 					) : (
 						<>
-							<Link className='btn btn-lg bg-amber-400 m-2' to='/login'>
+							<Link className='btn btn-lg bg-amber-400 m-2 hover:underline' to='/login'>
 								Login
 							</Link>
-							<Link className='btn btn-lg bg-amber-400 m-2' to='/signup'>
+							<Link className='btn btn-lg bg-amber-400 m-2 hover:underline' to='/signup'>
 								Sign Up
 							</Link>
 						</>

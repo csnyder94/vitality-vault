@@ -45,7 +45,7 @@ const Login = (props) => {
 		<main className='flex flex-col items-center mb-4'>
 			<div className='w-full lg:w-3/4'>
 				<div className='bg-white shadow rounded-lg'>
-					<h4 className='bg-amber-500 text-white p-2'>Login</h4>
+					<h4 className='bg-amber-500 text-white text-center p-2 rounded-t-lg'>Login</h4>
 					<div className='p-4'>
 						{data ? (
 							<p>

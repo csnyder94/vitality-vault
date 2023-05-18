@@ -12,7 +12,9 @@ const Homepage = () => {
 				<h1 className='md:text-4xl text-xl font-bold'>Welcome to Vitality Vault</h1>
 				<div className='flex flex-col space-y-5'>
 					<p className='md:text-xl text:md'>
-						Here you can explore a variety of exercises, create your own workout routines, and track your progress. Ready to get started?
+						{' '}
+						Your health is the most important thing. With Vitality Vault you can create your own workout routines and track your progress.
+						Ready to get started?
 					</p>
 					<Link to='/Login' className='bg-amber-500 hover:bg-amber-600 text-white font-bold py-2 px-4 rounded justify-center'>
 						Login to Explore Exercises
