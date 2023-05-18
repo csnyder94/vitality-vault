@@ -28,13 +28,13 @@ export const ADD_EXERCISE = gql`
 mutation addExercise($type: String!, $weight: Int!, $reps: Int!, $note: String!) {
   addExercise(type: $type, weight: $weight, reps: $reps, note: $note) {
     weight
-    user
     type
     reps
     note
     date
     _id
   }
+}
 `;
 
 export const REMOVE_EXERCISE = gql`
