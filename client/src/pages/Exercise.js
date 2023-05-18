@@ -23,7 +23,7 @@ const SingleExercise = () => {
   return (
     <div className="my-3">
       <h3 className="card-header bg-dark text-light p-2 m-0">
-        {exercise.name} <br />
+        {exercise.type} <br />
         <span style={{ fontSize: '1rem' }}>
           was completed on {exercise.date}
         </span>
@@ -38,8 +38,9 @@ const SingleExercise = () => {
             lineHeight: '1.5',
           }}
         >
-          {exercise.description}
-          {exercise.type}
+          {exercise.weight}
+          {exercise.reps}
+          {exercise.note}
         </blockquote>
       </div>
 

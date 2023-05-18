@@ -8,9 +8,10 @@ import { QUERY_EXERCISES, QUERY_ME } from '../../utils/queries';
 import Auth from '../../utils/auth';
 
 const ExerciseForm = () => {
-	const [name, setExerciseName] = useState('');
-	const [description, setExerciseDescription] = useState('');
 	const [type, setExerciseType] = useState('');
+	const [weight, setExerciseWeight] = useState('');
+	const [reps, setExerciseReps] = useState('');
+	const [note, setExerciseNote] = useState('');
 
 	const [addExercise, { error }] = useMutation(ADD_EXERCISE, {
 		update(cache, { data: { addExercise } }) {
@@ -49,15 +50,17 @@ const ExerciseForm = () => {
 		try {
 			await addExercise({
 				variables: {
-					name,
-					description,
 					type,
+					weight,
+					reps,
+					note
 				},
 			});
 
-			setExerciseName('');
-			setExerciseDescription('');
 			setExerciseType('');
+			setExerciseWeight('');
+			setExerciseReps('');
+			setExerciseNote('');
 		} catch (err) {
 			console.error(err);
 		}
@@ -65,17 +68,21 @@ const ExerciseForm = () => {
 
 	const handleChange = (event) => {
 		const { name, value } = event.target;
-
-		if (name === 'exerciseName') {
-			setExerciseName(value);
-		}
-		if (name === 'exerciseDescription') {
-			setExerciseDescription(value);
-		}
 		if (name === 'exerciseType') {
 			setExerciseType(value);
+		  }
+		  if (name === 'exerciseWeight') {
+			const weightValue = parseFloat(value);
+			setExerciseWeight(weightValue);
+		  }
+		  if (name === 'exerciseReps') {
+			const repsValue = parseInt(value, 10);
+			setExerciseReps(repsValue);
+		  }
+		  if (name === 'exerciseNote') {
+			setExerciseNote(value);
+		  }
 		}
-	};
 
 	const handleDeleteExercise = async (exerciseId) => {
 		try {
@@ -94,24 +101,33 @@ const ExerciseForm = () => {
 					<h3 className='text-lg font-semibold'>What exercise will you complete today?</h3>
 					<form className='flex flex-col lg:flex-row justify-between items-center' onSubmit={handleFormSubmit}>
 						<div className='w-full lg:w-3/4'>
+						<input
+								name='exerciseType'
+								placeholder='Exercise Type'
+								value={type}
+								className='w-full px-3 py-2 mb-3 border border-gray-300 rounded-md'
+								onChange={handleChange}
+							/>
 							<input
-								name='exerciseName'
-								placeholder='Exercise Name'
-								value={name}
+								name='exerciseWeight'
+								placeholder="Exercise Weight"
+								type='number'
+								value={weight}
+								className='w-full px-3 py-2 mb-3 border border-gray-300 rounded-md'
+								onChange={handleChange}
+							/>
+							<input
+								name='exerciseReps'
+								placeholder='Exercise Reps'
+								type='number'
+								value={reps}
 								className='w-full px-3 py-2 mb-3 border border-gray-300 rounded-md'
 								onChange={handleChange}
 							/>
 							<textarea
-								name='exerciseDescription'
-								placeholder="Here's today's exercise:"
-								value={description}
-								className='w-full px-3 py-2 mb-3 border border-gray-300 rounded-md'
-								onChange={handleChange}
-							/>
-							<input
-								name='exerciseType'
-								placeholder='Exercise Type'
-								value={type}
+								name='exerciseNote'
+								placeholder='Exercise Note'
+								value={note}
 								className='w-full px-3 py-2 mb-3 border border-gray-300 rounded-md'
 								onChange={handleChange}
 							/>
