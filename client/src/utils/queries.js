@@ -6,13 +6,22 @@ query User($username: String!) {
     _id
     username
     email
+    password
     exercises {
       _id
-      name
-      description
       type
+      weight
+      reps
+      note
       date
     }
+    age
+    height
+    weight
+    bmi
+    neck
+    chest
+    waist
   }
 }
 `;
@@ -21,22 +30,24 @@ export const QUERY_EXERCISES = gql`
 query Exercises {
   exercises {
     _id
-    name
-    description
-    date
     type
+    weight
+    reps
+    note
+    date
   }
 }
 `;
 
 export const QUERY_SINGLE_EXERCISE = gql`
-query getSingleExercise($exerciseId: ID!) {
+query Exercise($exerciseId: ID!) {
   exercise(exerciseId: $exerciseId) {
     _id
-    name
-    description
-    date
     type
+    weight
+    reps
+    note
+    date
   }
 }
 `;
@@ -50,10 +61,11 @@ export const QUERY_ME = gql`
       password
       exercises {
         _id
-        name
-        description
-        date
         type
+        weight
+        reps
+        note
+        date
       }
       age
       height

@@ -47,12 +47,13 @@ const resolvers = {
 
       return { token, user };
     },
-    addExercise: async (parent, { name, description, type }, context) => {
+    addExercise: async (parent, { type, weight, reps, note }, context) => {
    
       const exercise = await Exercise.create({
-        name,
-        description,
         type,
+        weight, 
+        reps,
+        note
 
       });
 
