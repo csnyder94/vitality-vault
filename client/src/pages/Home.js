@@ -10,8 +10,6 @@ import { QUERY_EXERCISES } from '../utils/queries';
 
 const Home = () => {
 	const { loading, data } = useQuery(QUERY_EXERCISES);
-	// const exercise = data?.exercise || [];
-	console.log(data);
 	return (
 		<main>
 			<>

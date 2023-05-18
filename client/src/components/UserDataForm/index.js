@@ -1,18 +1,41 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
 import { UPDATE_USER } from '../../utils/mutations';
-import Auth from '../../utils/auth'
 
 const UserDataForm = (props) => {
 	const [age, setAge] = useState(props?.age || 0);
 	const [height, setHeight] = useState(props?.height || 0);
+	const heightOptions = [
+		{ value: '0', label: 'Select Height' },
+		{ value: '1', label: '4 ft 11 in' },
+		{ value: '2', label: '5 ft 0 in' },
+		{ value: '3', label: '5 ft 1 in' },
+		{ value: '4', label: '5 ft 2 in' },
+		{ value: '5', label: '5 ft 3 in' },
+		{ value: '6', label: '5 ft 4 in' },
+		{ value: '7', label: '5 ft 5 in' },
+		{ value: '8', label: '5 ft 6 in' },
+		{ value: '9', label: '5 ft 7 in' },
+		{ value: '10', label: '5 ft 8 in' },
+		{ value: '11', label: '5 ft 9 in' },
+		{ value: '12', label: '5 ft 10 in' },
+		{ value: '13', label: '5 ft 11 in' },
+		{ value: '14', label: '6 ft 0 in' },
+		{ value: '15', label: '6 ft 1 in' },
+		{ value: '16', label: '6 ft 2 in' },
+		{ value: '17', label: '6 ft 3 in' },
+		{ value: '18', label: '6 ft 4 in' },
+		{ value: '19', label: '6 ft 5 in' },
+		{ value: '20', label: '6 ft 6 in' },
+
+	];
 	const [weight, setWeight] = useState(props?.weight || 0);
 	const [BMI, setBMI] = useState(props?.bmi || 0);
 	const [neck, setNeck] = useState(props?.neck || 0);
 	const [chest, setChest] = useState(props?.chest || 0);
 	const [waist, setWaist] = useState(props?.waist || 0);
 
-	const [updateUser, { error, data }] = useMutation(UPDATE_USER);
+	const [updateUser] = useMutation(UPDATE_USER);
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
@@ -35,7 +58,6 @@ const UserDataForm = (props) => {
 					...info
 				}
 			});
-			// Auth.login(data.login.token)
 			console.log(data);
 		} catch (error) {
 		}
@@ -74,15 +96,22 @@ const UserDataForm = (props) => {
 						onChange={handleInputChange}>
 					</input>
 				</div>
-				<div className="w-full md:w-1/2 px-3">
+				<div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
 					<label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-height">
 						Height
 					</label>
-					<input className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+					<select
+						className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
 						value={height}
 						name="height"
-						onChange={handleInputChange}>
-					</input>
+						onChange={handleInputChange}
+					>
+						{heightOptions.map((option) => (
+							<option key={option.value} value={option.value}>
+								{option.label}
+							</option>
+						))}
+					</select>
 				</div>
 				<div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
 					<label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-weight">
@@ -107,7 +136,7 @@ const UserDataForm = (props) => {
 				<div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
 					<label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-neck">
 						Neck
-				</label>
+					</label>
 					<input className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
 						value={neck}
 						name="neck"
@@ -115,7 +144,7 @@ const UserDataForm = (props) => {
 					</input>
 				</div>
 				<div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-				<label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-chest">
+					<label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="grid-chest">
 						Chest
 					</label>
 					<input className="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
@@ -136,7 +165,7 @@ const UserDataForm = (props) => {
 				</div>
 			</div>
 			<div className="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-			<button type='submit' className='btn btn-lg bg-amber-400 m-2'>Submit</button>
+				<button type='submit' className='btn btn-lg bg-amber-400 m-2'>Submit</button>
 			</div>
 		</form>
 	);

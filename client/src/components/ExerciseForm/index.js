@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 
 import { ADD_EXERCISE, REMOVE_EXERCISE } from '../../utils/mutations';
-import { QUERY_EXERCISES, QUERY_ME } from '../../utils/queries';
+import { QUERY_EXERCISES } from '../../utils/queries';
 
 import Auth from '../../utils/auth';
 
@@ -28,7 +28,7 @@ const ExerciseForm = () => {
 		},
 	});
 
-	const [removeExercise, { error: deleteError }] = useMutation(REMOVE_EXERCISE, {
+	const [{ error: deleteError }] = useMutation(REMOVE_EXERCISE, {
 		update(cache, { data: { removeExercise } }) {
 		  try {
 			const { exercises } = cache.readQuery({ query: QUERY_EXERCISES });
@@ -83,16 +83,6 @@ const ExerciseForm = () => {
 			setExerciseNote(value);
 		  }
 		}
-
-	const handleDeleteExercise = async (exerciseId) => {
-		try {
-		  await removeExercise({
-			variables: { exerciseId },
-		  });
-		} catch (err) {
-		  console.error(err);
-		}
-	  };
 
 	return (
 		<div>
