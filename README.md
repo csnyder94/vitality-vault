@@ -9,7 +9,7 @@ https://vitality-vault.herokuapp.com/
 
 ## Description
 
-Our website allows a user to make an account and login.  As a user, you can set up your profile, and add your workout and fitness information to a secure database.  You can view this information at anytime to help keep track of your fitness journey.  It uses GraphQL and Express.js to interact with a MongoDB database. 
+Our website allows a user to make an account and login.  As a user, you can set up your profile, and add your workout and fitness information to a secure database.  You can view this information at anytime to help keep track of your fitness journey.  It uses React and Express.js to interact with a GraphQL/MongoDB database. 
 
 ## Table of Contents:
 * [Description](#description)
