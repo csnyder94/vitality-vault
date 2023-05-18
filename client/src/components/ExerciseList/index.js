@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/client';
 import { REMOVE_EXERCISE } from '../../utils/mutations';
-import { QUERY_EXERCISES, QUERY_ME } from '../../utils/queries';
+import { QUERY_EXERCISES} from '../../utils/queries';
 import Auth from '../../utils/auth';
 
 const ExerciseList = ({ exercises }) => {
-	const [removeExercise, { error: deleteError }] = useMutation(REMOVE_EXERCISE, {
+	const [removeExercise] = useMutation(REMOVE_EXERCISE, {
 		update(cache, { data: { removeExercise } }) {
 		  try {
 			const { exercises } = cache.readQuery({ query: QUERY_EXERCISES });
