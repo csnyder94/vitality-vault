@@ -45,4 +45,5 @@ This project was a collaboration between fellow classmates: Aiden Miller, Madiso
 
 Homepage:
 
-![image](https://github.com/AidenMiller123/Book-Search-Engine/assets/123018143/53c98ffa-2b78-4b12-9807-b81562537a06) 
+![vitality-vault herokuapp com_](https://github.com/csnyder94/vitality-vault/assets/124528804/a41129a5-f4e3-49da-8f36-d81e9a5d364e)
+
